@@ -9,4 +9,8 @@ public:
 		v[0] = x; 
 		v[1] = y; 
 	}
+	Point2(Point2 & _p) : Point(2){
+		for (int i = 0; i < dim; i++)
+			v[i] = _p.getÑordinate(i);
+	}
 };

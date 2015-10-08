@@ -20,12 +20,26 @@ public:
 		}
 		
 	}
-
+	void Start(){
+		bool status = false;
+		do{
+			AssignCorrectMetroid();
+			for (int i = 0; i < numOfClusters; i++)
+				status | clusters[i].updateCurrentMedoid();//если хот€ бы одна функци€ центрировани€ вернула положительный результат повтор€ем цикл снова
+		} while (status);
+	}
 	void AssignCorrectMetroid(){
 		for (auto it = pset.begin(); it != pset.end(); it++){
+			int min = 9999;//помен€ть!!!
+			int currClusterId = 0;
 			for (int j = 0; j < numOfClusters; j++){
-				it->manhattanMetric(*it, );
+				int dis = it->manhattanMetric(clusters[j].getCurMedoid());//сравниваем координаты с центром
+				if (min > dis){
+					min = dis;
+					currClusterId = j;
+				}
 			}
+			clusters[currClusterId].addPoint(*it);
 		}
 	}
 

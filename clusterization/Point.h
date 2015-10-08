@@ -12,20 +12,32 @@ protected:
 	}
 public:
 	int getÑordinate(int _d){ return v[_d]; }
-	~Point(){
-		delete[] v;
+
+	bool isEqual(Point _p){// ñğàâíåíèå 2õ òî÷åê
+		for (int i = 0; i < dim; i++)
+			if (v[i] != _p.getÑordinate(i))
+				return false;
+		return true;
 	}
-	double evcMetric(Point p1, Point p2){
+	double evcMetric(Point _p1, Point _p2){
 		int sum = 0;
 		for (int i = 0; i < dim; i++)
-			sum += pow(p1.getÑordinate(i) - p2.getÑordinate(i),2);
+			sum += pow(_p1.getÑordinate(i) - _p2.getÑordinate(i),2);
 		return sqrt(sum);
 	};
-	int manhattanMetric(Point p1, Point p2){
+	int manhattanMetric(Point _p){
 		int sum = 0;
 		for (int i = 0; i < dim; i++)
-			sum = abs(p1.getÑordinate(i) - p2.getÑordinate(i));
+			sum = abs(v[i] - _p.getÑordinate(i));
 		return sum;
+	}
+	Point& operator=(Point& _p){
+		for (int i = 0; i < 2; i++)
+			v[i] = _p.getÑordinate(i);
+		return *this;
+	}
+	~Point(){
+		delete[] v;
 	}
 private:
 	Point(){}
