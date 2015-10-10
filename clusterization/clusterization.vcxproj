@@ -70,7 +70,7 @@
     <ClInclude Include="Cluster.h" />
     <ClInclude Include="cProcc.h" />
     <ClInclude Include="Point.h" />
-    <ClInclude Include="Point2.h" />
+    <ClInclude Include="Point2d.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

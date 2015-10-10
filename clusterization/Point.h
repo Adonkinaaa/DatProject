@@ -1,17 +1,30 @@
 #pragma once
 #include <vector>
 #include <cmath>
-
+#include <iostream>
+using namespace std;
 class Point {
 protected:
 	int dim;
+	//int * v;
+
+public:
 	int * v;
+	int get—ordinate(int _d)const{ return v[_d]; }
+	int getDimension()const{ return dim; }
+	Point(){
+		dim = 0;
+	}
 	Point(int _dim){
 		dim = _dim;
-		v = new int[dim]; 
+		v = new int[dim];
 	}
-public:
-	int get—ordinate(int _d){ return v[_d]; }
+	Point(const Point & _p) {
+		dim = _p.getDimension();
+		v = new int[dim];
+		for (int i = 0; i < dim; i++)
+			v[i] = _p.get—ordinate(i);
+	}
 
 	bool isEqual(Point _p){// Ò‡‚ÌÂÌËÂ 2ı ÚÓ˜ÂÍ
 		for (int i = 0; i < dim; i++)
@@ -28,17 +41,29 @@ public:
 	int manhattanMetric(Point _p){
 		int sum = 0;
 		for (int i = 0; i < dim; i++)
-			sum = abs(v[i] - _p.get—ordinate(i));
+			sum += abs(v[i] - _p.get—ordinate(i));
 		return sum;
 	}
 	Point& operator=(Point& _p){
-		for (int i = 0; i < 2; i++)
+		dim = _p.getDimension();
+		delete[]v;
+		v = new int[dim];
+		for (int i = 0; i < dim; i++)
 			v[i] = _p.get—ordinate(i);
 		return *this;
+		
 	}
 	~Point(){
 		delete[] v;
+		//cout << " poin deleted" << endl;
 	}
-private:
-	Point(){}
+	//supply methods
+	void show(){
+		for (int i = 0; i < dim; i++)
+			cout << v[i] << " ";
+		cout << endl;
+	}
+	virtual Point NullPoint(){
+		return *this;
+	}
 };

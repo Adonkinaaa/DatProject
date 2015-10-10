@@ -1,22 +1,30 @@
 #include <vector>
-#include "Point2.h"
+#include "Point2d.h"
 
 using namespace std;
 class Cluster{
-	vector<Point2> ps;
-	Point2 curMedoid;
-	Point2 prevMedoid;
+	vector<Point> ps;
+	Point curMedoid;
+	Point prevMedoid;
+	Point origin;
 public:
-	Cluster():curMedoid(Point2(0,0)), prevMedoid(Point2(0,0)){}
-	void addPoint(Point2 _p) { ps.push_back(_p); }
-	void setMedoid(Point2 _p) { prevMedoid = curMedoid; curMedoid = _p; }
+	Cluster(Point _origin) : origin(_origin){
+		curMedoid = origin;
+		prevMedoid = origin;
+	}
+	void clear() { ps.clear(); }//wtf?
+	void addPoint(Point _p) { ps.push_back(_p); }
+	void setMedoid(Point _p) { prevMedoid = curMedoid; curMedoid = _p; }
+	int getClustrSize(){ return ps.size(); }
+	Point getMedoid() { return curMedoid; }
 	bool updateCurrentMedoid(){// check ?????
 		int minCost = 99999; // поменять !
-		Point2 tmp(0, 0);
+		Point tmp = origin.NullPoint();
+		int s = ps.size();
 		for (int i = 0; i < ps.size(); i++){
 			int cost = 0;
 			
-			for (int j = 0; j < ps.size(); i++){
+			for (int j = 0; j < ps.size(); j++){
 				cost += ps[i].manhattanMetric(ps[j]);
 			}
 
@@ -33,5 +41,5 @@ public:
 		else
 			return false;
 	}
-	Point2 getCurMedoid() { return curMedoid; }
+	Point getCurMedoid() { return curMedoid; }
 };
