@@ -14,7 +14,7 @@ public:
 
 	cProcc(int _numOfClusters, vector<Point> _data);
 
-	void RandSetMetroids();
+	void RandSetMedoids();
 	void start();
 	void assignCorrectMetroid();
 	void logCurMedoids();

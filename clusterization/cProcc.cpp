@@ -4,9 +4,9 @@ cProcc::cProcc(int _numOfClusters, vector<Point> _data) : pset(_data), numOfClus
 	clusters = new Cluster*[_numOfClusters];
 	for (int i = 0; i < _numOfClusters; i++)
 		clusters[i] = new Cluster(_data[0].NullPoint());
-	RandSetMetroids();
+	RandSetMedoids();
 }
-void cProcc::RandSetMetroids(){
+void cProcc::RandSetMedoids(){
 	int k = pset.size() / numOfClusters;
 	for (int i = 0; i < numOfClusters; i++){
 		clusters[i]->setMedoid(pset[k*i]);//выбираем рандомные точки из множества как метроиды	
