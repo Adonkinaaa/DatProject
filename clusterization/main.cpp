@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "cProcc.h"
+#include "Point2d.h"
 using namespace std;
 
 int main(){
