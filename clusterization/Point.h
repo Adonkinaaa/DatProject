@@ -24,7 +24,7 @@ public:
 	
 	//supply methods
 
-	int get—ordinate(int _d)const{ return v[_d]; }
+	int getCordinate(int _d)const{ return v[_d]; }
 	int getDimension()const{ return dim; }
 	void logPoint();
 	virtual Point NullPoint();
