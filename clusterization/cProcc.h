@@ -8,7 +8,7 @@ class cProcc{
 
 	int numOfClusters;
 	vector<Point> pset;
-	vector<Point> metroids;
+	//vector<Point> medoids;
 	Cluster** clusters;
 public:
 
