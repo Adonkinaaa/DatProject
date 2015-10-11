@@ -1,5 +1,5 @@
 #include <vector>
-#include "Point2d.h"
+#include "Point.h"
 
 using namespace std;
 class Cluster{
