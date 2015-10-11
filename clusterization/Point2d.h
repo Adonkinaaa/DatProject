@@ -8,7 +8,7 @@ public:
 		v[1] = _y;
 	}
 
-	virtual Point NullPoint(){
+	virtual Point NullPoint() override{
 		return Point2d(0, 0);
 	}
 };
