@@ -16,7 +16,7 @@ public:
 
 	void RandSetMedoids();
 	void start();
-	void assignCorrectMetroid();
+	void assignCorrectMedoid();
 	void logCurMedoids();
 
 	~cProcc(){

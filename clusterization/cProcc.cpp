@@ -17,7 +17,7 @@ void cProcc::start(){
 	bool status = true;
 	while (status){
 		status = false;
-		assignCorrectMetroid();
+		assignCorrectMedoid();
 		for (int i = 0; i < numOfClusters; i++){
 			//cout << "Cluster : " << i << " with medoid";
 			//clusters[i]->getMedoid().logPoint();
@@ -28,7 +28,7 @@ void cProcc::start(){
 		cout << endl;
 	}
 }
-void cProcc::assignCorrectMetroid(){
+void cProcc::assignCorrectMedoid(){
 	for (int i = 0; i < numOfClusters; i++)
 		clusters[i]->clear();
 	for (auto it = pset.begin(); it != pset.end(); it++){
