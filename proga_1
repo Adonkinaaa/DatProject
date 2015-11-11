@@ -1,0 +1,132 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	cout << "write down the dimension of vector" << endl;
+	long int n;
+	cin >> n;
+	cout << "write down the numper of vectors" << endl;
+	long int N;
+	cin >> N;
+	long float *mas_with_consistence;
+	mas_with_consistence = new long float[N];// Массив для плотностей
+	long int *mas_with_numbers;
+	mas_with_numbers = new long int[N];// Массив для номеров точек или просто точек
+	for (int i = 0; i < N; i++)
+	{
+		cin >> mas_with_consistence[i];//типа заполняем массив уже известными плотностями, номер i положения в массиве соответствует номеру i+1 точки
+	}
+	for (int i = 0; i < N ; i++)
+	{
+		mas_with_numbers[i] = i + 1; // Заполняем наш массив номерами точек
+	}
+	float smth; // временная переменная для обмена элементов местами
+	int smth_1;
+	// Сортировка массива пузырьком
+	for (int i = 0; i < N-1; i++) 
+	{
+		for (int j = 0; j < N - i-1 ; j++)
+		{
+			if (mas_with_consistence[j] > mas_with_consistence[j + 1]) 
+			{
+				smth = mas_with_consistence[j];
+				smth_1 = mas_with_numbers[j];
+				mas_with_consistence[j] = mas_with_consistence[j + 1];
+				mas_with_numbers[j] = mas_with_numbers[j + 1];
+				mas_with_consistence[j + 1] = smth;
+				mas_with_numbers[j + 1] = smth_1;
+			}
+		}
+	}
+	
+	// Получили отсортированный массив с плотностями и так же отсортированный массив с номерами точек
+	int E;
+	int d;
+	cout << "bring in the value of E - step - and the value of d - range" << endl;
+	cout << "E = ";
+	cin >> E;
+	cout << endl;
+	cout << "d = ";
+	cin >> d;
+	cout << endl;
+	int step = 0;
+	int amount = 0;
+	int max_amount = 0;
+	int a = 0;
+	while (step <= (mas_with_consistence[N-1] + 2*d))
+	{
+		a++;
+		step = step + E;
+	}  // cчитаем, сколько раз поместится таких себе делений
+	
+	step = 0;
+	while (step <= mas_with_consistence[N-1]+2*d)
+	{
+		
+		for (int i = 0; i < N ; i++)
+		{
+			if (mas_with_consistence[i] <= (step + d) && mas_with_consistence[i] >= (step - d))  amount++;
+		}
+		if (amount > max_amount) max_amount = amount;
+		amount = 0;
+		step = step + E;
+	}
+	cout << endl << "max = " <<max_amount << endl;
+	step = 0;
+	int**MASS = new int*[a];
+	for (int i = 0; i < a; i++)
+	{
+		MASS[i] = new int[max_amount];
+	}
+	for (int i = 0; i < a; i++)
+		{
+			for (int r = 0; r < N ; r++)
+				{
+					if (mas_with_consistence[r] <= (step + d) && mas_with_consistence[r] >= (step - d))  amount++;
+				}
+				float *time_mas;
+				time_mas = new float[max_amount];
+				int l = 0;
+			for (int r = 0; r < N; r++)
+				{
+					if (mas_with_consistence[r] <= (step + d) && mas_with_consistence[r] >= (step - d))
+					{
+						time_mas[l] = mas_with_numbers[r];// Мы ему даем уже номер той самой точки, которая имеет эту плотность
+						l++;
+					}
+				}
+			for (int w = l; w < max_amount; w++)
+			{
+				time_mas[w] = 0;// Типа зануляем оставшиеся для наших точек пустые места
+			}
+			
+				
+					if (amount = max_amount)
+						{
+							for (int j = 0; j < max_amount; j++)
+							{
+								MASS[i][j] = time_mas[j];
+							}
+						};
+				
+			step = step + E;
+			amount = 0;
+		}
+	//Вроде как получился двойной массив, где N-ная строка - это те точки, что попали в N-нную d-окрестность
+	for (int i = 0; i < a; i++)
+	{
+		for (int j = 0; j < max_amount; j++)
+		{
+			cout << MASS[i][j] << "  ";
+		}
+		cout << endl;
+	}
+	
+	int y;
+	cin >> y;
+	return 0;
+}
